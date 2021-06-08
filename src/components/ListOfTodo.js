@@ -1,6 +1,8 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+
 export default function ListOfTodo({ token }) {
+    const [tasks, setTasks] = useState([])
     useEffect(() => {
         if (token) {
             fetchData(token);
@@ -13,12 +15,20 @@ export default function ListOfTodo({ token }) {
                 Authorization: 'Bearer ' + token,
             },
         });
-        console.log(res.data);
+        setTasks(res.data.tasks);
+        console.log(tasks);
     };
 
     return (
         <div>
-            <h1>List of todo</h1>
+            <ul>
+                {tasks.map(task => (
+                    <li key={task.title}>
+                        <div>{task.title}</div>
+                        <div>{task.description}</div>
+                    </li>
+                ))}
+            </ul>
         </div>
     );
 }

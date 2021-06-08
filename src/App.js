@@ -2,7 +2,7 @@ import './App.css';
 import firebase from 'firebase/app';
 import 'firebase/auth';
 import { useEffect, useState } from 'react';
-//import ListOfTodo from './components/ListOfTodo';
+import ListOfTodo from './components/ListOfTodo';
 import UserCard from './components/UserCard'
 function App() {
   const [auth, setAuth] = useState(
@@ -49,6 +49,7 @@ function App() {
       {auth ? (
         <div>
           <UserCard userData={userData} logout={logout} />
+          <ListOfTodo token={token} />
         </div>
       ) : (
         <div>

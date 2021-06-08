@@ -1,14 +1,24 @@
 import React from 'react'
 import altphoto from '../assets/dummy-user.png'
-import { Container } from 'react-bootstrap'
+import { Form, Button, Card, Alert } from "react-bootstrap"
 import './UserCard.css'
 export default function UserCard(props) {
 
     return (
-        <Container>
-            <img className="round" src={props.userData.photoURL ? props.userData.photoURL.replace('=s96', '=s150') : altphoto} alt="UserPhoto" />
-            <h1>{props.userData.name}</h1>
-            <button onClick={props.logout}>Logout</button>
-        </Container>
+        <div style={{ display: 'flex', justifyContent: 'center' }}>
+            <Card style={{ display: 'flex', justifySelf: 'center', alignSelf: "center", width: "300px" }}>
+
+                <Card.Body>
+                    <Form>
+                        <img className="round" src={props.userData.photoURL ? props.userData.photoURL.replace('=s96', '=s150') : altphoto} alt="UserPhoto" />
+                        <h1>{props.userData.name}</h1>
+                        <Button onClick={props.logout}>Logout</Button>
+                    </Form>
+
+                </Card.Body>
+            </Card>
+
+        </div>
+
     )
 }
