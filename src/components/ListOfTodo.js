@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import TaskCard from './TaskCard';
 
 export default function ListOfTodo({ token }) {
     const [tasks, setTasks] = useState([])
@@ -21,11 +22,10 @@ export default function ListOfTodo({ token }) {
 
     return (
         <div>
-            <ul>
+            <ul style={{ listStyleType: 'none' }}>
                 {tasks.map(task => (
                     <li key={task.title}>
-                        <div>{task.title}</div>
-                        <div>{task.description}</div>
+                        <TaskCard data={task} />
                     </li>
                 ))}
             </ul>
