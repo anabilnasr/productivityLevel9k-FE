@@ -1,17 +1,19 @@
 import './App.css';
 import firebase from 'firebase/app';
 import 'firebase/auth';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
 import ListOfTodo from './components/ListOfTodo';
 import UserCard from './components/UserCard'
-import Demo from './components/Listdrag'
+import Timer from './components/Timer'
+import SettingsContextProvider, { SettingContext } from './context/SettingsContext';
+import axios from 'axios'
+
 function App() {
   const [auth, setAuth] = useState(
     false || window.localStorage.getItem('auth') === 'true'
   );
   const [token, setToken] = useState('');
   const [userData, setUserData] = useState({ uuid: "", name: "", photoURL: "" });
-
 
   useEffect(() => {
     firebase.auth().onAuthStateChanged((userCred) => {
@@ -21,8 +23,8 @@ function App() {
         userCred.getIdToken().then((token) => {
           setToken(token);
           setUserData({ uuid: userCred.uuid, name: userCred.displayName, photoURL: userCred.photoURL });
+          console.log(token);
         });
-
       }
     });
   }, []);
@@ -48,9 +50,11 @@ function App() {
   return (
     <div className="App">
       {auth ? (
-        <div>
-          <UserCard userData={userData} logout={logout} />
-          <ListOfTodo token={token} />
+        <div className="container">
+          <SettingsContextProvider>
+            <UserCard userData={userData} logout={logout} />
+            <Timer token={token} />
+          </SettingsContextProvider>
         </div>
       ) : (
         <div>

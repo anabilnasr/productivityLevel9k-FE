@@ -11,13 +11,13 @@ export default function ListOfTodo({ token }) {
     }, [token]);
 
     const fetchData = async (token) => {
-        const res = await axios.get('http://localhost:5000/api/todos', {
+        const res = await axios.get('http://localhost:5000/tasks', {
             headers: {
                 Authorization: 'Bearer ' + token,
             },
         });
-        setTasks(res.data.tasks);
-        console.log(tasks);
+        console.log(res.data)
+        setTasks(res.data);
     };
 
     return (

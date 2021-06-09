@@ -5,8 +5,8 @@ import './UserCard.css'
 export default function UserCard(props) {
 
     return (
-        <div style={{ display: 'flex', justifyContent: 'center' }}>
-            <Card style={{ display: 'flex', justifySelf: 'center', alignSelf: "center", width: "300px" }}>
+        <div className="userCard">
+            <Card style={{ alignSelf: "flex-start", borderWidth: "1px", borderRadius: "5%", borderColor: "#FFF", backgroundColor: "transparent", display: 'flex', justifySelf: 'center', alignSelf: "center", width: "300px" }}>
 
                 <Card.Body>
                     <Form>
@@ -18,7 +18,7 @@ export default function UserCard(props) {
                 </Card.Body>
             </Card>
 
-        </div>
+        </div >
 
     )
 }
